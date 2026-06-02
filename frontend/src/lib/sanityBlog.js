@@ -1,3 +1,5 @@
+import { mockData } from "@/mock/data";
+
 const API_VERSION = "2024-01-01";
 
 export const getSanityConfig = () => {
@@ -60,6 +62,9 @@ export const seedBlogPosts = [
     ],
     publishedAt: "2026-06-01T00:00:00.000Z",
     slug: { current: "discover-elegant-2-bhk-premium-flats-in-bhubaneswar" },
+    featuredImage: {
+      asset: { url: mockData.gallery[4]?.image || mockData.gallery[0]?.image },
+    },
     categories: [{ _id: "cat-1", title: "2 BHK", slug: { current: "2-bhk" } }],
     author: { name: "The Gardenia", slug: { current: "the-gardenia" } },
   },
@@ -76,6 +81,9 @@ export const seedBlogPosts = [
     ],
     publishedAt: "2026-06-01T00:00:00.000Z",
     slug: { current: "premium-3-bhk-flats-in-bhubaneswar-with-top-amenities" },
+    featuredImage: {
+      asset: { url: mockData.gallery[8]?.image || mockData.gallery[1]?.image },
+    },
     categories: [{ _id: "cat-2", title: "3 BHK", slug: { current: "3-bhk" } }],
     author: { name: "The Gardenia", slug: { current: "the-gardenia" } },
   },
@@ -92,6 +100,9 @@ export const seedBlogPosts = [
     ],
     publishedAt: "2026-06-01T00:00:00.000Z",
     slug: { current: "luxury-living-starts-with-4-bhk-flats-in-bhubaneswar" },
+    featuredImage: {
+      asset: { url: mockData.gallery[3]?.image || mockData.gallery[2]?.image },
+    },
     categories: [{ _id: "cat-3", title: "4 BHK", slug: { current: "4-bhk" } }],
     author: { name: "The Gardenia", slug: { current: "the-gardenia" } },
   },
@@ -108,6 +119,9 @@ export const seedBlogPosts = [
     ],
     publishedAt: "2026-06-01T00:00:00.000Z",
     slug: { current: "discover-spacious-5-bhk-penthouse-in-bhubaneswar" },
+    featuredImage: {
+      asset: { url: mockData.gallery[1]?.image || mockData.gallery[0]?.image },
+    },
     categories: [{ _id: "cat-4", title: "Penthouse", slug: { current: "penthouse" } }],
     author: { name: "The Gardenia", slug: { current: "the-gardenia" } },
   },

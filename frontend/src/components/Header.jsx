@@ -25,6 +25,7 @@ const Header = () => {
   const navItems = useMemo(() => [
     { label: 'Home', to: '/', type: 'link' },
     { label: 'About', to: '/about-us', type: 'link' },
+    { label: 'Properties', type: 'dropdown' },
     { label: 'Amenities', to: '/amenities', type: 'link' },
     { label: 'Blog', to: '/blog', type: 'link' },
     { label: 'Gallery', to: '/gallery', type: 'link' },
@@ -56,6 +57,42 @@ const Header = () => {
 
           <nav className="hidden xl:flex items-center gap-1">
             {navItems.map((item) => {
+              if (item.type === 'dropdown') {
+                return (
+                  <div className="relative ml-1" key="properties">
+                    <button
+                      type="button"
+                      onClick={() => setPropertiesOpen((v) => !v)}
+                      onBlur={() => {
+                        window.setTimeout(() => setPropertiesOpen(false), 150);
+                      }}
+                      className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-emerald-700"
+                      aria-expanded={propertiesOpen}
+                    >
+                      Properties
+                      <ChevronDown className={`h-4 w-4 transition-transform ${propertiesOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    {propertiesOpen && (
+                      <div className="absolute left-0 mt-2 w-52 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
+                        <div className="p-2">
+                          {propertyItems.map((propertyItem) => (
+                            <Link
+                              key={propertyItem.to}
+                              to={propertyItem.to}
+                              className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                            >
+                              {propertyItem.label}
+                              <ArrowRight className="h-4 w-4" />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={item.to}
@@ -70,38 +107,6 @@ const Header = () => {
                 </Link>
               );
             })}
-
-            <div className="relative ml-1">
-              <button
-                type="button"
-                onClick={() => setPropertiesOpen((v) => !v)}
-                onBlur={() => {
-                  window.setTimeout(() => setPropertiesOpen(false), 150);
-                }}
-                className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-emerald-700"
-                aria-expanded={propertiesOpen}
-              >
-                Properties
-                <ChevronDown className={`h-4 w-4 transition-transform ${propertiesOpen ? 'rotate-180' : ''}`} />
-              </button>
-
-              {propertiesOpen && (
-                <div className="absolute right-0 mt-2 w-52 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
-                  <div className="p-2">
-                    {propertyItems.map((item) => (
-                      <Link
-                        key={item.to}
-                        to={item.to}
-                      className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
-                      >
-                        {item.label}
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
           </nav>
 
           <div className="hidden xl:flex items-center gap-3">

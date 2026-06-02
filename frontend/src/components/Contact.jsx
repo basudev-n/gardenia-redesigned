@@ -320,17 +320,10 @@ const Contact = () => {
             {[
               {
                 icon: Phone,
-                title: 'Phone (Toll-Free)',
-                body: ['1800 890 0428'],
+                title: 'Phone (Toll-Free) + Email',
+                body: ['1800 890 0428', 'info@gardenia.homes', 'sales@thegardenia.com'],
                 cta: 'tel:18008900428',
                 ctaLabel: 'Call now'
-              },
-              {
-                icon: Mail,
-                title: 'Email',
-                body: ['info@gardenia.homes', 'sales@thegardenia.com'],
-                cta: 'mailto:info@gardenia.homes',
-                ctaLabel: 'Send email'
               },
               {
                 icon: Clock,
@@ -349,28 +342,30 @@ const Contact = () => {
               return (
                 <div
                   key={item.title}
-                  className="group rounded-[1.5rem] border border-gray-100 bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  className="group rounded-[1.5rem] border border-gray-100 bg-white p-5 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-emerald-100 transition-colors group-hover:bg-emerald-200">
                       <Icon className="w-6 h-6 text-emerald-600" />
                     </div>
-                    <div>
-                      <h4 className="mb-2 font-semibold text-gray-900">{item.title}</h4>
-                      {item.body.map((line) => (
-                        <p key={line} className="text-gray-600 text-sm leading-relaxed">
-                          {line}
-                        </p>
-                      ))}
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-sm font-semibold uppercase tracking-[0.14em] text-gray-900">{item.title}</h4>
+                      <div className="mt-3 space-y-2">
+                        {item.body.map((line) => (
+                          <p key={line} className="text-sm leading-6 text-gray-600 break-words">
+                            {line}
+                          </p>
+                        ))}
+                      </div>
                       {item.cta && (
                         <a
                           href={item.cta}
                           target={item.cta.startsWith('http') ? '_blank' : undefined}
                           rel={item.cta.startsWith('http') ? 'noreferrer' : undefined}
-                          className="mt-3 inline-flex items-center text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+                          className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-emerald-700 hover:text-emerald-800"
                         >
                           {item.ctaLabel}
-                          <ArrowRight className="w-4 h-4 ml-1" />
+                          <ArrowRight className="w-4 h-4" />
                         </a>
                       )}
                     </div>
