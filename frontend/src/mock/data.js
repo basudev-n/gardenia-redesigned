@@ -33,7 +33,7 @@ export const mockData = {
     description: "Experience a new era of wellness-driven living at The Gardenia, a premium residential community offering thoughtfully crafted 2, 3 & 4 BHK apartments and exclusive penthouses in Bhubaneswar.",
     startingPrice: "₹79 Lacs*",
     location: "Bhubaneswar",
-    heroImage: "/images/01.jpg"
+    heroImage: "https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/h087np0r_WhatsApp%20Image%202026-02-24%20at%2020.23.34%20%281%29.jpeg"
   },
 
   amenities: [
@@ -214,61 +214,61 @@ export const mockData = {
   gallery: [
     {
       id: 1,
-      image: "/images/04.jpg",
+      image: "https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/h087np0r_WhatsApp%20Image%202026-02-24%20at%2020.23.34%20%281%29.jpeg",
       title: "Evening View",
       category: "Exterior"
     },
     {
       id: 2,
-      image: "/images/05.jpg",
+      image: "https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/mkkjm4e0_WhatsApp%20Image%202026-02-24%20at%2020.24.07%20%285%29.jpeg",
       title: "Penthouse Interior",
       category: "Interior"
     },
     {
       id: 3,
-      image: "/images/06.jpg",
+      image: "https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/drck9os8_WhatsApp%20Image%202026-02-24%20at%2020.24.06%20%282%29.jpeg",
       title: "Rooftop Terrace Gardens",
       category: "Amenity"
     },
     {
       id: 4,
-      image: "/images/07.jpg",
+      image: "https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/w8ecptqy_WhatsApp%20Image%202026-02-24%20at%2020.24.06%20%288%29.jpeg",
       title: "Courtyard View",
       category: "Amenity"
     },
     {
       id: 5,
-      image: "/images/08.jpg",
+      image: "https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/408t9juo_WhatsApp%20Image%202026-02-24%20at%2020.24.07%20%282%29.jpeg",
       title: "Modern Kitchen",
       category: "Interior"
     },
     {
       id: 6,
-      image: "/images/09.jpg",
+      image: "https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/0ml7lpuz_WhatsApp%20Image%202026-02-24%20at%2020.24.07%20%283%29.jpeg",
       title: "Elevator Lobby",
       category: "Interior"
     },
     {
       id: 7,
-      image: "/images/010.jpg",
+      image: "https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/y914hk94_WhatsApp%20Image%202026-02-24%20at%2020.23.54%20%283%29.jpeg",
       title: "Daytime Landscape",
       category: "Exterior"
     },
     {
       id: 8,
-      image: "/images/011.jpg",
+      image: "https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/9lx5neif_WhatsApp%20Image%202026-02-24%20at%2020.23.34.jpeg",
       title: "Aerial Overview",
       category: "Overview"
     },
     {
       id: 9,
-      image: "/images/012.jpg",
+      image: "https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/66ue5lv9_WhatsApp%20Image%202026-02-24%20at%2020.23.54%20%281%29.jpeg",
       title: "Courtyard & Gardens",
       category: "Amenity"
     },
     {
       id: 10,
-      image: "/images/013.jpg",
+      image: "https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/qfrbx5fy_WhatsApp%20Image%202026-02-24%20at%2020.23.54%20%282%29.jpeg",
       title: "Swimming Pool",
       category: "Amenity"
     }
