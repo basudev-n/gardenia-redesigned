@@ -3,9 +3,38 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Gallery from "@/components/Gallery";
 
+const PAGE_TITLE = "The Gardenia Gallery | Luxury Apartments Bhubaneswar";
+const PAGE_DESCRIPTION =
+  "Explore The Gardenia gallery near Ghangapatna Kantabada, showcasing luxury apartments, premium amenities, elegant interiors, clubhouse, and green spaces.";
+const CANONICAL_URL = "https://www.gardenia.homes/gallery";
+
+function updateMetaTag(name, content) {
+  if (typeof document === "undefined") return;
+  let tag = document.querySelector(`meta[name='${name}']`);
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute("name", name);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("content", content);
+}
+
+function updateCanonical(url) {
+  if (typeof document === "undefined") return;
+  let link = document.querySelector("link[rel='canonical']");
+  if (!link) {
+    link = document.createElement("link");
+    link.setAttribute("rel", "canonical");
+    document.head.appendChild(link);
+  }
+  link.setAttribute("href", url);
+}
+
 export default function GalleryPage() {
   useEffect(() => {
-    document.title = "Gallery | The Gardenia";
+    document.title = PAGE_TITLE;
+    updateMetaTag("description", PAGE_DESCRIPTION);
+    updateCanonical(CANONICAL_URL);
   }, []);
 
   return (

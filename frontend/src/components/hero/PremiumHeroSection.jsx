@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDown, Download, Menu, X } from "lucide-react";
+import { openSiteVisitModal } from "@/lib/openSiteVisit";
 
 const DEFAULT_NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -125,14 +126,8 @@ export default function PremiumHeroSection({
       onSecondaryCTA();
       return;
     }
-
-    if (typeof document === "undefined") return;
-
-    document.getElementById("contact")?.scrollIntoView({
-      behavior: reduceMotion ? "auto" : "smooth",
-      block: "start",
-    });
-  }, [onSecondaryCTA, reduceMotion]);
+    openSiteVisitModal();
+  }, [onSecondaryCTA]);
 
   const handleNavClick = useCallback((event, href) => {
     if (!href?.startsWith("#")) return;

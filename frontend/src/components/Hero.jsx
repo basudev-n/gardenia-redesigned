@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import { ArrowRight, MapPin, Download, Calendar, X, CheckCircle, Phone, User, Home } from 'lucide-react';
 import { Button } from './ui/button';
 import { mockData } from '../mock/data';
+import { openSiteVisitModal } from '@/lib/openSiteVisit';
 
 const PREFERENCES = ['2 BHK', '3 BHK', '3.5 BHK', '5 BHK Penthouse'];
-const API_URL = 'https://gardenia-admin.up.railway.app';
+const BROCHURE_ENDPOINT = 'https://formspree.io/f/xlgkjnab';
 
 const Hero = () => {
   const { hero } = mockData;
@@ -14,10 +15,6 @@ const Hero = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
-
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -37,10 +34,14 @@ const Hero = () => {
 
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/api/brochure-lead`, {
+      const res = await fetch(BROCHURE_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: 'New brochure download request from The Gardenia website',
+          ...form,
+          formType: 'brochure-download',
+        }),
       });
 
       if (!res.ok) throw new Error('Submission failed');
@@ -50,10 +51,10 @@ const Hero = () => {
       // Auto-trigger brochure download after short delay
       setTimeout(() => {
         const link = document.createElement('a');
-        link.href = '/brochure.pdf'; // Place your PDF in frontend/public/brochure.pdf
+        link.href = '/brouchure.pdf';
         link.download = 'The-Gardenia-Brochure.pdf';
         link.click();
-      }, 1000);
+      }, 300);
 
     } catch (err) {
       setError('Something went wrong. Please try again.');
@@ -115,7 +116,7 @@ const Hero = () => {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 items-start animate-in fade-in slide-in-from-bottom-14 duration-700 delay-500">
               <Button
-                onClick={scrollToContact}
+                onClick={openSiteVisitModal}
                 size="lg"
                 className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 text-lg font-semibold rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-600/30"
                 aria-label="Book your site visit"
@@ -287,7 +288,7 @@ const Hero = () => {
                     Your brochure is downloading automatically. Our team will be in touch soon!
                   </p>
                   <p className="text-xs text-gray-400 mb-6">If the download didn't start,
-                    <a href="/brochure.pdf" download="The-Gardenia-Brochure.pdf" className="text-emerald-600 font-semibold ml-1">click here</a>.
+                    <a href="/brouchure.pdf" download="The-Gardenia-Brochure.pdf" className="text-emerald-600 font-semibold ml-1">click here</a>.
                   </p>
                   <button
                     onClick={closeModal}

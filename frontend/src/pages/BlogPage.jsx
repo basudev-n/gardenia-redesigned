@@ -5,12 +5,41 @@ import BlogCard from "@/components/BlogCard";
 import { fetchSanityPosts, seedBlogPosts } from "@/lib/sanityBlog";
 import { Newspaper } from "lucide-react";
 
+const PAGE_TITLE = "The Gardenia Latest Blogs | Luxury Living in Bhubaneswar";
+const PAGE_DESCRIPTION =
+  "Read The Gardenia latest blogs about luxury apartments, wellness living, real estate trends, lifestyle tips, and premium homes in Bhubaneswar. Read now.";
+const CANONICAL_URL = "https://www.gardenia.homes/blogs";
+
+function updateMetaTag(name, content) {
+  if (typeof document === "undefined") return;
+  let tag = document.querySelector(`meta[name='${name}']`);
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute("name", name);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("content", content);
+}
+
+function updateCanonical(url) {
+  if (typeof document === "undefined") return;
+  let link = document.querySelector("link[rel='canonical']");
+  if (!link) {
+    link = document.createElement("link");
+    link.setAttribute("rel", "canonical");
+    document.head.appendChild(link);
+  }
+  link.setAttribute("href", url);
+}
+
 export default function BlogPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    document.title = "Blog & Resources | The Gardenia";
+    document.title = PAGE_TITLE;
+    updateMetaTag("description", PAGE_DESCRIPTION);
+    updateCanonical(CANONICAL_URL);
     let active = true;
 
     const load = async () => {

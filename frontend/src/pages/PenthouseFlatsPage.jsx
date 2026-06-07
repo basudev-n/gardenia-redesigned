@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check, Building2, Leaf, MapPin, Sparkles, Star } from "lucide-react";
+import { openSiteVisitModal } from "@/lib/openSiteVisit";
 
 const highlights = [
   "Spacious 5 BHK Layouts",
@@ -63,6 +64,33 @@ const faqItems = [
   },
 ];
 
+const PAGE_TITLE = "5 BHK Penthouse For Sale in Bhubaneswar Near Ghangapatna";
+const PAGE_DESCRIPTION =
+  "Discover exclusive 5 BHK penthouse for sale in Bhubaneswar near Ghangapatna at The Gardenia with luxury interiors, skyline views, and premium amenities. Book now.";
+const CANONICAL_URL = "https://www.gardenia.homes/penthouse-for-sale-in-bhubaneswar";
+
+function updateMetaTag(name, content) {
+  if (typeof document === "undefined") return;
+  let tag = document.querySelector(`meta[name='${name}']`);
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute("name", name);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("content", content);
+}
+
+function updateCanonical(url) {
+  if (typeof document === "undefined") return;
+  let link = document.querySelector("link[rel='canonical']");
+  if (!link) {
+    link = document.createElement("link");
+    link.setAttribute("rel", "canonical");
+    document.head.appendChild(link);
+  }
+  link.setAttribute("href", url);
+}
+
 function SectionTitle({ eyebrow, title, description }) {
   return (
     <div className="max-w-3xl">
@@ -77,7 +105,9 @@ function SectionTitle({ eyebrow, title, description }) {
 
 export default function PenthouseFlatsPage() {
   useEffect(() => {
-    document.title = "Exclusive 5 BHK Penthouse for Sale in Bhubaneswar | The Gardenia";
+    document.title = PAGE_TITLE;
+    updateMetaTag("description", PAGE_DESCRIPTION);
+    updateCanonical(CANONICAL_URL);
   }, []);
 
   return (
@@ -104,8 +134,8 @@ export default function PenthouseFlatsPage() {
                       Download Penthouse Brochure
                     </a>
                   </Button>
-                  <Button asChild variant="outline" className="rounded-full border-emerald-200 px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
-                    <Link to="/contact-us">Schedule Your Site Visit</Link>
+                  <Button onClick={openSiteVisitModal} variant="outline" className="rounded-full border-emerald-200 px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
+                    Schedule Your Site Visit
                   </Button>
                 </div>
               </div>
@@ -209,8 +239,8 @@ export default function PenthouseFlatsPage() {
                 <p className="mt-4 text-lg leading-8 text-gray-600">
                   Explore exclusive penthouse residences at The Gardenia with spacious layouts, private terraces, premium amenities, and breathtaking skyline views.
                 </p>
-                <Button asChild className="mt-6 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700">
-                  <Link to="/contact-us">Get Penthouse Pricing</Link>
+                <Button onClick={openSiteVisitModal} className="mt-6 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700">
+                  Get Penthouse Pricing
                 </Button>
               </div>
             </div>
@@ -321,8 +351,8 @@ export default function PenthouseFlatsPage() {
                 Designed for comfort, exclusivity, and modern lifestyle experiences.
               </p>
               <div className="mt-8">
-                <Button asChild className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
-                  <Link to="/contact-us">Schedule Your site Visit</Link>
+                <Button onClick={openSiteVisitModal} className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
+                  Schedule Your site Visit
                 </Button>
               </div>
             </div>

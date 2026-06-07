@@ -13,10 +13,10 @@ import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import BuildYourFutureSection from "@/components/BuildYourFutureSection";
 import BeginJourneySection from "@/components/BeginJourneySection";
 
-const PAGE_TITLE = "About Us | The Gardenia";
+const PAGE_TITLE = "About The Gardenia Ultra Luxury Living in Bhubaneswar";
 const PAGE_DESCRIPTION =
-  "Discover The Gardenia About Us story, premium residences, wellness-focused design, prime location, and luxury living in Bhubaneswar.";
-const CANONICAL_URL = "https://thegardenia.in/about-us";
+  "Discover The Gardenia near Ghangapatna Kantabada, Bhubaneswar's premium address for luxury apartments, penthouses, wellness living, open spaces & modern amenities.";
+const CANONICAL_URL = "https://www.gardenia.homes/about-us";
 
 function updateMetaTag(name, content) {
   if (typeof document === "undefined") return;

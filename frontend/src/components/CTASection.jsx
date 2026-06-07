@@ -1,18 +1,12 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { openSiteVisitModal } from "@/lib/openSiteVisit";
 
 /**
  * CTASection
  * Props: { onCtaClick?: () => void, className?: string }
  */
 export default function CTASection({ onCtaClick, className = "" }) {
-  const handleClick = (e) => {
-    if (onCtaClick) {
-      e.preventDefault();
-      onCtaClick();
-    }
-  };
-
   return (
     <section
       className={`w-full ${className}`}
@@ -27,18 +21,11 @@ export default function CTASection({ onCtaClick, className = "" }) {
 
         <div className="mt-8">
           <Button
-            asChild
+            onClick={onCtaClick || openSiteVisitModal}
             size="lg"
             className="transform transition-transform hover:scale-105"
           >
-            <a
-              href="/contact-us"
-              onClick={handleClick}
-              aria-label="Schedule a Site Visit"
-              className="bg-emerald-600 text-white px-6 py-3 rounded-full inline-block"
-            >
-              Schedule a Site Visit
-            </a>
+            Schedule a Site Visit
           </Button>
         </div>
       </div>

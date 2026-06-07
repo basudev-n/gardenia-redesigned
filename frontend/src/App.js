@@ -16,6 +16,7 @@ import Location from "@/components/Location";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import SiteVisitModal from "@/components/SiteVisitModal";
 import AdminDashboard from "@/components/AdminDashboard";
 import { ArrowRight, Camera } from "lucide-react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -37,6 +38,23 @@ const PrivacyPolicyPage = React.lazy(() => import("@/pages/PrivacyPolicyPage"));
 
 function HomeLayout() {
   React.useEffect(() => {
+    document.title = "Book Luxury Apartments in Bhubaneswar Near Ghangapatna";
+    const description = "Discover luxury 2, 3 & 4 BHK Apartments & exclusive 5 BHK Penthouses in Bhubaneswar Near Ghangapatna Kantabada at The Gardenia with premium amenities. Book today.";
+    let meta = document.querySelector("meta[name='description']");
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "description");
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", description);
+    let link = document.querySelector("link[rel='canonical']");
+    if (!link) {
+      link = document.createElement("link");
+      link.setAttribute("rel", "canonical");
+      document.head.appendChild(link);
+    }
+    link.setAttribute("href", "https://www.gardenia.homes/");
+
     const pathToId = {
       '/amenities': 'amenities',
       '/gallery': 'gallery',
@@ -57,6 +75,7 @@ function HomeLayout() {
     <div className="App">
       <Header />
       <Hero />
+      <SiteVisitModal />
 
       <AboutSection />
 
@@ -148,6 +167,7 @@ function App() {
           <Route path="/" element={<HomeLayout />} />
           <Route path="/amenities" element={<AmenitiesPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blogs" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/floor-plans" element={<HomeLayout />} />

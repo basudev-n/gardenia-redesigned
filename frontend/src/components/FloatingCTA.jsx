@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, MessageCircle, X, Calendar } from 'lucide-react';
 import { Button } from './ui/button';
+import { openSiteVisitModal } from '@/lib/openSiteVisit';
 
 const FloatingCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,10 +34,7 @@ const FloatingCTA = () => {
   };
 
   const handleScheduleVisit = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    openSiteVisitModal();
   };
 
   if (!isVisible) return null;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { openSiteVisitModal } from '@/lib/openSiteVisit';
 
 export interface BookDreamCtaSectionProps {
   onBookClick?: () => void;
@@ -26,7 +27,7 @@ export default function BookDreamCtaSection({ onBookClick, className = '' }: Boo
 
           <Button
             type="button"
-            onClick={onBookClick}
+            onClick={onBookClick || openSiteVisitModal}
             variant="secondary"
             className="mt-8 h-12 rounded-full bg-white px-6 text-sm font-semibold text-emerald-700 shadow-[0_12px_40px_rgba(2,6,23,0.12)] hover:bg-white/95"
             aria-label="Book a site visit at The Gardenia"

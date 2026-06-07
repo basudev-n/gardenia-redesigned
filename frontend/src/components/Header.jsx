@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, ChevronDown, ArrowRight, Newspaper } from 'lucide-react';
 import { Button } from './ui/button';
+import { openSiteVisitModal } from '@/lib/openSiteVisit';
 
 const Header = () => {
   const location = useLocation();
@@ -117,10 +118,8 @@ const Header = () => {
               <Phone className="h-4 w-4" />
               1800 890 0428
             </a>
-            <Button asChild className="rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-emerald-700 hover:shadow-md">
-              <Link to="/contact-us">
+            <Button onClick={openSiteVisitModal} className="rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-emerald-700 hover:shadow-md">
               Book a Visit
-              </Link>
             </Button>
           </div>
 
@@ -181,8 +180,8 @@ const Header = () => {
                 <Phone className="h-4 w-4" />
                 1800 890 0428
               </a>
-              <Button asChild className="w-full rounded-full bg-emerald-600 py-3 text-sm font-semibold text-white hover:bg-emerald-700">
-                <Link to="/contact-us">Book a Visit</Link>
+              <Button onClick={openSiteVisitModal} className="w-full rounded-full bg-emerald-600 py-3 text-sm font-semibold text-white hover:bg-emerald-700">
+                Book a Visit
               </Button>
             </div>
           </div>

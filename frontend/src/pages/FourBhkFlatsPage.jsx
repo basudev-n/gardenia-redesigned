@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check, Building2, Leaf, MapPin, Sparkles, Star } from "lucide-react";
+import { openSiteVisitModal } from "@/lib/openSiteVisit";
 
 const highlights = [
   "Expansive Living & Dining Spaces",
@@ -61,6 +62,33 @@ const faqItems = [
   },
 ];
 
+const PAGE_TITLE = "4 BHK Flats Near Ghangapatna Bhubaneswar | The Gardenia";
+const PAGE_DESCRIPTION =
+  "Explore premium 4 BHK flats in Bhubaneswar near Ghangapatna Kantabada at The Gardenia where luxury, open green spaces, and contemporary living come together.";
+const CANONICAL_URL = "https://www.gardenia.homes/4-bhk-flats-in-bhubaneswar";
+
+function updateMetaTag(name, content) {
+  if (typeof document === "undefined") return;
+  let tag = document.querySelector(`meta[name='${name}']`);
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute("name", name);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("content", content);
+}
+
+function updateCanonical(url) {
+  if (typeof document === "undefined") return;
+  let link = document.querySelector("link[rel='canonical']");
+  if (!link) {
+    link = document.createElement("link");
+    link.setAttribute("rel", "canonical");
+    document.head.appendChild(link);
+  }
+  link.setAttribute("href", url);
+}
+
 function SectionTitle({ eyebrow, title, description }) {
   return (
     <div className="max-w-3xl">
@@ -75,7 +103,9 @@ function SectionTitle({ eyebrow, title, description }) {
 
 export default function FourBhkFlatsPage() {
   useEffect(() => {
-    document.title = "Premium 4 BHK Flats in Bhubaneswar | The Gardenia";
+    document.title = PAGE_TITLE;
+    updateMetaTag("description", PAGE_DESCRIPTION);
+    updateCanonical(CANONICAL_URL);
   }, []);
 
   return (
@@ -102,8 +132,8 @@ export default function FourBhkFlatsPage() {
                       Download Floor Plan
                     </a>
                   </Button>
-                  <Button asChild variant="outline" className="rounded-full border-emerald-200 px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
-                    <Link to="/contact-us">Book Your Site Visit</Link>
+                  <Button onClick={openSiteVisitModal} variant="outline" className="rounded-full border-emerald-200 px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
+                    Book Your Site Visit
                   </Button>
                 </div>
               </div>
@@ -213,8 +243,8 @@ export default function FourBhkFlatsPage() {
                 <p className="mt-4 text-lg leading-8 text-gray-600">
                   Explore premium residences at The Gardenia designed for families seeking luxury, comfort, wellness, and long-term value in Bhubaneswar.
                 </p>
-                <Button asChild className="mt-6 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700">
-                  <Link to="/contact-us">Download brochure</Link>
+                <Button onClick={openSiteVisitModal} className="mt-6 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700">
+                  Download brochure
                 </Button>
               </div>
             </div>
@@ -309,8 +339,8 @@ export default function FourBhkFlatsPage() {
                 The Gardenia combines prime location advantage, luxury positioning, wellness-focused planning, modern infrastructure, and premium community living, making it an excellent choice for both homeowners and investors.
               </p>
               <div className="mt-8">
-                <Button asChild className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
-                  <Link to="/contact-us">Enquire Now</Link>
+                <Button onClick={openSiteVisitModal} className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
+                  Enquire Now
                 </Button>
               </div>
             </div>

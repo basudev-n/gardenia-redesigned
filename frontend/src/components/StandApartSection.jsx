@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { openSiteVisitModal } from "@/lib/openSiteVisit";
 
 export default function StandApartSection() {
   return (
@@ -17,11 +17,9 @@ export default function StandApartSection() {
           <p className="max-w-3xl text-base md:text-lg leading-8 text-emerald-50/85">
             The Gardenia combines wellness, luxury, architecture, and open living into one integrated lifestyle experience. Unlike conventional apartment projects, it offers residents a harmonious balance between urban accessibility and peaceful nature-inspired living.
           </p>
-          <Button asChild size="lg" className="mt-7 rounded-full bg-white px-7 text-emerald-900 hover:bg-emerald-50">
-            <Link to="/contact">
-              Schedule Site Visit
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+          <Button onClick={openSiteVisitModal} size="lg" className="mt-7 rounded-full bg-white px-7 text-emerald-900 hover:bg-emerald-50">
+            Schedule Site Visit
+            <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
       </div>

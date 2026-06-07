@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check, Building2, Leaf, MapPin, Sparkles, Star } from "lucide-react";
+import { openSiteVisitModal } from "@/lib/openSiteVisit";
 
 const features = [
   "Spacious Living & Dining Areas",
@@ -15,6 +16,33 @@ const features = [
   "Smart Space Utilization",
   "Contemporary Interior Design",
 ];
+
+const PAGE_TITLE = "Premium 2 BHK Flats in Bhubaneswar Near Ghangapatna";
+const PAGE_DESCRIPTION =
+  "Explore premium 2 BHK flats in Bhubaneswar near Ghangapatna Kantabada at The Gardenia featuring spacious layouts, luxury amenities, green spaces, and modern living.";
+const CANONICAL_URL = "https://www.gardenia.homes/2-bhk-flats-in-bhubaneswar";
+
+function updateMetaTag(name, content) {
+  if (typeof document === "undefined") return;
+  let tag = document.querySelector(`meta[name='${name}']`);
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute("name", name);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("content", content);
+}
+
+function updateCanonical(url) {
+  if (typeof document === "undefined") return;
+  let link = document.querySelector("link[rel='canonical']");
+  if (!link) {
+    link = document.createElement("link");
+    link.setAttribute("rel", "canonical");
+    document.head.appendChild(link);
+  }
+  link.setAttribute("href", url);
+}
 
 const amenities = [
   "Swimming Pool",
@@ -75,7 +103,9 @@ function SectionTitle({ eyebrow, title, description }) {
 
 export default function TwoBhkFlatsPage() {
   useEffect(() => {
-    document.title = "Premium 2 BHK Flats in Bhubaneswar | The Gardenia";
+    document.title = PAGE_TITLE;
+    updateMetaTag("description", PAGE_DESCRIPTION);
+    updateCanonical(CANONICAL_URL);
   }, []);
 
   return (
@@ -102,8 +132,8 @@ export default function TwoBhkFlatsPage() {
                       Download Floor Plan
                     </a>
                   </Button>
-                  <Button asChild variant="outline" className="rounded-full border-emerald-200 px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
-                    <Link to="/contact-us">Schedule Your Visit</Link>
+                  <Button onClick={openSiteVisitModal} variant="outline" className="rounded-full border-emerald-200 px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
+                    Schedule Your Visit
                   </Button>
                 </div>
               </div>
@@ -257,8 +287,8 @@ export default function TwoBhkFlatsPage() {
                 <p className="mt-4 text-lg leading-8 text-gray-600">
                   Experience premium living with spacious homes, modern amenities, and nature-inspired surroundings at The Gardenia.
                 </p>
-                <Button asChild className="mt-6 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700">
-                  <Link to="/contact-us">Schedule Your Visit</Link>
+                <Button onClick={openSiteVisitModal} className="mt-6 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700">
+                  Schedule Your Visit
                 </Button>
               </div>
             </div>
@@ -322,8 +352,8 @@ export default function TwoBhkFlatsPage() {
                 Schedule your personalized site visit and explore spacious 2 BHK flats at The Gardenia.
               </p>
               <div className="mt-8">
-                <Button asChild className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
-                  <Link to="/contact-us">Book Site Visit</Link>
+                <Button onClick={openSiteVisitModal} className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
+                  Book Site Visit
                 </Button>
               </div>
             </div>

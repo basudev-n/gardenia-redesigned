@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check, ArrowRight, Building2, Leaf, MapPin, Star, Sparkles } from "lucide-react";
+import { openSiteVisitModal } from "@/lib/openSiteVisit";
 
 const features = [
   "Spacious Living & Dining Areas",
@@ -61,6 +62,33 @@ const faqs = [
   },
 ];
 
+const PAGE_TITLE = "3 BHK Flats in Bhubaneswar Near Ghangapatna Kantabada";
+const PAGE_DESCRIPTION =
+  "Discover luxury 3 BHK flats in Bhubaneswar near Ghangapatna Kantabada at The Gardenia with spacious homes, premium amenities, green spaces & modern family living.";
+const CANONICAL_URL = "https://www.gardenia.homes/3-bhk-flats-in-bhubaneswar";
+
+function updateMetaTag(name, content) {
+  if (typeof document === "undefined") return;
+  let tag = document.querySelector(`meta[name='${name}']`);
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute("name", name);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("content", content);
+}
+
+function updateCanonical(url) {
+  if (typeof document === "undefined") return;
+  let link = document.querySelector("link[rel='canonical']");
+  if (!link) {
+    link = document.createElement("link");
+    link.setAttribute("rel", "canonical");
+    document.head.appendChild(link);
+  }
+  link.setAttribute("href", url);
+}
+
 function SectionTitle({ eyebrow, title, description }) {
   return (
     <div className="max-w-3xl">
@@ -75,7 +103,9 @@ function SectionTitle({ eyebrow, title, description }) {
 
 export default function ThreeBhkFlatsPage() {
   useEffect(() => {
-    document.title = "Luxury 3 BHK Flats in Bhubaneswar | The Gardenia";
+    document.title = PAGE_TITLE;
+    updateMetaTag("description", PAGE_DESCRIPTION);
+    updateCanonical(CANONICAL_URL);
   }, []);
 
   return (
@@ -102,8 +132,8 @@ export default function ThreeBhkFlatsPage() {
                       Download brochure
                     </a>
                   </Button>
-                  <Button asChild variant="outline" className="rounded-full border-emerald-200 px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
-                    <Link to="/contact-us">Book Your Site Visit</Link>
+                  <Button onClick={openSiteVisitModal} variant="outline" className="rounded-full border-emerald-200 px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
+                    Book Your Site Visit
                   </Button>
                 </div>
               </div>
@@ -210,8 +240,8 @@ export default function ThreeBhkFlatsPage() {
                 <p className="mt-4 text-lg leading-8 text-gray-600">
                   Explore spacious luxury residences at The Gardenia with world-class amenities, elegant interiors, and peaceful green surroundings.
                 </p>
-                <Button asChild className="mt-6 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700">
-                  <Link to="/contact-us">Book Your Site Visit</Link>
+                <Button onClick={openSiteVisitModal} className="mt-6 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700">
+                  Book Your Site Visit
                 </Button>
               </div>
             </div>
@@ -305,8 +335,8 @@ export default function ThreeBhkFlatsPage() {
                 Whether you are buying your dream home or making a long-term property investment, The Gardenia offers exceptional value in a premium residential segment.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
-                  <Link to="/contact-us">Schedule a site Visit</Link>
+                <Button onClick={openSiteVisitModal} className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
+                  Schedule a site Visit
                 </Button>
               </div>
             </div>

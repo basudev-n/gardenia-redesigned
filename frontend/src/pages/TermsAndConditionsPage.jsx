@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 const PAGE_TITLE = "Terms & Conditions | The Gardenia";
 const PAGE_DESCRIPTION =
-  "Read The Gardenia terms and conditions for website usage, project information, liability, pricing, and legal notices.";
+  "Read the Terms & Conditions of The Gardenia website covering website usage, project information, policies, disclaimers, and user responsibilities.";
 const CANONICAL_URL = "https://www.gardenia.homes/terms-and-conditions";
 
 function updateMetaTag(name, content) {

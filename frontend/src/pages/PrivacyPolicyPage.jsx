@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 const PAGE_TITLE = "Privacy Policy | The Gardenia";
 const PAGE_DESCRIPTION =
-  "Read The Gardenia privacy policy for data collection, usage, cookies, communication, and user rights.";
+  "Read the Privacy Policy of The Gardenia to understand how personal information, website data, and enquiry details are collected and protected.";
 const CANONICAL_URL = "https://www.gardenia.homes/privacy-policy";
 
 function updateMetaTag(name, content) {

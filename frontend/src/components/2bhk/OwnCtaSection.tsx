@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { openSiteVisitModal } from '@/lib/openSiteVisit';
 
 export interface OwnLuxuryCtaSectionProps {
   onCtaClick?: () => void;
@@ -26,7 +27,7 @@ export default function OwnLuxuryCtaSection({ onCtaClick, className = '' }: OwnL
 
           <Button
             type="button"
-            onClick={onCtaClick}
+            onClick={onCtaClick || openSiteVisitModal}
             aria-label="Schedule a site visit at The Gardenia"
             className="mt-8 h-12 rounded-full bg-emerald-600 px-6 text-sm font-semibold text-white shadow-[0_12px_40px_rgba(2,6,23,0.12)] hover:bg-emerald-700"
           >
