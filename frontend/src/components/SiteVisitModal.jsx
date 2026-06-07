@@ -80,6 +80,9 @@ export default function SiteVisitModal() {
       if (!response.ok) throw new Error('Submission failed');
       setSubmitted(true);
       setForm(initialForm);
+      setTimeout(() => {
+        window.location.assign('/thank-you?type=site-visit');
+      }, 600);
     } catch (err) {
       setError('Something went wrong. Please try again.');
     } finally {
@@ -107,20 +110,7 @@ export default function SiteVisitModal() {
 
         <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="p-6 md:p-8">
-            {submitted ? (
-              <div className="flex min-h-[320px] flex-col items-center justify-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
-                  <CheckCircle className="h-8 w-8" />
-                </div>
-                <h4 className="mt-5 text-2xl font-bold text-slate-900">Thanks, we’ve got your request.</h4>
-                <p className="mt-3 max-w-md text-sm leading-7 text-slate-600">
-                  Our team will reach out soon to confirm your site visit and share the next steps.
-                </p>
-                <Button onClick={close} className="mt-6 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700">
-                  Close
-                </Button>
-              </div>
-            ) : (
+            {!submitted && (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>

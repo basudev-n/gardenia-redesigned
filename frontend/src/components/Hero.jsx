@@ -46,15 +46,16 @@ const Hero = () => {
 
       if (!res.ok) throw new Error('Submission failed');
 
-      setSubmitted(true);
+      // Auto-trigger brochure download, then redirect to thank you page
+      const link = document.createElement('a');
+      link.href = '/brouchure.pdf';
+      link.download = 'The-Gardenia-Brochure.pdf';
+      link.click();
 
-      // Auto-trigger brochure download after short delay
+      setSubmitted(true);
       setTimeout(() => {
-        const link = document.createElement('a');
-        link.href = '/brouchure.pdf';
-        link.download = 'The-Gardenia-Brochure.pdf';
-        link.click();
-      }, 300);
+        window.location.assign('/thank-you?type=brochure');
+      }, 800);
 
     } catch (err) {
       setError('Something went wrong. Please try again.');
@@ -277,27 +278,7 @@ const Hero = () => {
                     🔒 Your information is safe. No spam, ever.
                   </p>
                 </form>
-              ) : (
-                /* Success State */
-                <div className="text-center py-6">
-                  <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="w-9 h-9 text-emerald-600" />
-                  </div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">Thank you, {form.name.split(' ')[0]}!</h4>
-                  <p className="text-gray-500 text-sm mb-4">
-                    Your brochure is downloading automatically. Our team will be in touch soon!
-                  </p>
-                  <p className="text-xs text-gray-400 mb-6">If the download didn't start,
-                    <a href="/brouchure.pdf" download="The-Gardenia-Brochure.pdf" className="text-emerald-600 font-semibold ml-1">click here</a>.
-                  </p>
-                  <button
-                    onClick={closeModal}
-                    className="w-full border border-gray-200 text-gray-600 hover:bg-gray-50 py-3 rounded-xl font-medium text-sm transition-all"
-                  >
-                    Close
-                  </button>
-                </div>
-              )}
+              ) : null}
             </div>
           </div>
         </div>

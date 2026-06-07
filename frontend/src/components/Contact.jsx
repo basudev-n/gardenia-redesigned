@@ -19,6 +19,7 @@ import {
   CheckCircle
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 const initialFormData = {
   name: '',
@@ -33,12 +34,11 @@ const API_URL = process.env.REACT_APP_API_URL || '';
 
 const Contact = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const [preferredContact, setPreferredContact] = useState('phone');
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [submittedName, setSubmittedName] = useState('');
 
   const today = useMemo(() => new Date().toISOString().split('T')[0], []);
 
@@ -82,11 +82,6 @@ const Contact = () => {
     }));
   };
 
-  const closeSuccessModal = () => {
-    setShowSuccessModal(false);
-    setSubmittedName('');
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -116,8 +111,7 @@ const Contact = () => {
         throw new Error('Submission failed');
       }
 
-      setSubmittedName(formData.name.trim());
-      setShowSuccessModal(true);
+      navigate('/thank-you?type=contact');
       setFormData(initialFormData);
       setPreferredContact('phone');
       setErrors({});
@@ -377,41 +371,6 @@ const Contact = () => {
         </div>
       </div>
 
-      {showSuccessModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/55 px-4">
-          <div className="w-full max-w-md rounded-3xl bg-white shadow-2xl overflow-hidden">
-            <div className="flex items-center justify-between bg-emerald-600 px-6 py-4">
-              <h4 className="text-lg font-semibold text-white">Form Submitted Successfully</h4>
-              <button
-                type="button"
-                onClick={closeSuccessModal}
-                className="rounded-full p-1 text-white/90 hover:bg-white/15 transition-colors"
-                aria-label="Close success popup"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="px-6 py-7 text-center">
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100">
-                <CheckCircle className="h-8 w-8 text-emerald-600" />
-              </div>
-              <p className="text-lg font-semibold text-gray-900">Thank you{submittedName ? `, ${submittedName.split(' ')[0]}` : ''}!</p>
-              <p className="mt-2 text-sm text-gray-600">
-                Your form is successfully submitted and someone from our team will get back to you shortly.
-              </p>
-
-              <Button
-                type="button"
-                onClick={closeSuccessModal}
-                className="mt-6 w-full bg-emerald-600 hover:bg-emerald-700 text-white"
-              >
-                Done
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

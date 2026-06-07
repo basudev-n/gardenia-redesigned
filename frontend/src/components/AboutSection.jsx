@@ -44,7 +44,7 @@ export default function AboutSection() {
           <div className="relative">
             <div className="relative overflow-hidden rounded-[2rem] shadow-[0_24px_70px_rgba(15,23,42,0.18)]">
               <img
-                src={mockData.hero.heroImage}
+                src={mockData.assets.about}
                 alt="The Gardenia residential community surrounded by open green living"
                 loading="lazy"
                 decoding="async"

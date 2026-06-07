@@ -35,6 +35,7 @@ const TwoBhkFlatsPage = React.lazy(() => import("@/pages/TwoBhkFlatsPage"));
 const PropertyPage = React.lazy(() => import("@/pages/PropertyPage"));
 const TermsAndConditionsPage = React.lazy(() => import("@/pages/TermsAndConditionsPage"));
 const PrivacyPolicyPage = React.lazy(() => import("@/pages/PrivacyPolicyPage"));
+const ThankYouPage = React.lazy(() => import("@/pages/ThankYouPage"));
 
 function HomeLayout() {
   React.useEffect(() => {
@@ -181,6 +182,7 @@ function App() {
           <Route path="/penthouse-for-sale-in-bhubaneswar" element={<PenthouseFlatsPage />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/thank-you" element={<ThankYouPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

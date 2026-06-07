@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check, Building2, Leaf, MapPin, Sparkles, Star } from "lucide-react";
 import { openSiteVisitModal } from "@/lib/openSiteVisit";
+import { mockData } from "@/mock/data";
 
 const features = [
   "Spacious Living & Dining Areas",
@@ -139,21 +140,11 @@ export default function TwoBhkFlatsPage() {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                {[
-                  { icon: Building2, title: "Modern Family", text: "Comfort with practicality" },
-                  { icon: Leaf, title: "Wellness", text: "Green and open surroundings" },
-                  { icon: MapPin, title: "Ghangapatna", text: "Prime residential corridor" },
-                  { icon: Sparkles, title: "Elegant Finish", text: "Refined interiors and details" },
-                ].map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={item.title} className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
-                      <Icon className="h-5 w-5 text-emerald-600" />
-                      <div className="mt-4 text-sm font-semibold text-gray-900">{item.title}</div>
-                      <div className="mt-1 text-sm leading-6 text-gray-600">{item.text}</div>
-                    </div>
-                  );
-                })}
+                {[mockData.assets.gallery[0], mockData.assets.gallery[1], mockData.assets.gallery[2], mockData.assets.gallery[3]].map((src, index) => (
+                  <div key={src} className={`overflow-hidden rounded-2xl border border-white/60 bg-white shadow-sm ${index === 0 ? 'row-span-2 min-h-[240px]' : 'min-h-[116px]'}`}>
+                    <img src={src} alt={`2 BHK showcase ${index + 1}`} className="h-full w-full object-cover" loading="lazy" decoding="async" />
+                  </div>
+                ))}
               </div>
             </div>
           </div>

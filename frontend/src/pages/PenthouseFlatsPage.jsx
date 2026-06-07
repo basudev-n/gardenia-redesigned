@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check, Building2, Leaf, MapPin, Sparkles, Star } from "lucide-react";
 import { openSiteVisitModal } from "@/lib/openSiteVisit";
+import { mockData } from "@/mock/data";
 
 const highlights = [
   "Spacious 5 BHK Layouts",
@@ -141,21 +142,11 @@ export default function PenthouseFlatsPage() {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                {[
-                  { icon: Building2, title: "Exclusive Space", text: "Designed for elevated family living" },
-                  { icon: Leaf, title: "Wellness", text: "Nature-inspired lifestyle planning" },
-                  { icon: MapPin, title: "Ghangapatna", text: "Strong urban connectivity" },
-                  { icon: Sparkles, title: "Prestige", text: "Refined luxury with privacy" },
-                ].map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={item.title} className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
-                      <Icon className="h-5 w-5 text-emerald-600" />
-                      <div className="mt-4 text-sm font-semibold text-gray-900">{item.title}</div>
-                      <div className="mt-1 text-sm leading-6 text-gray-600">{item.text}</div>
-                    </div>
-                  );
-                })}
+                {[mockData.assets.interiors[4], mockData.assets.interiors[5], mockData.assets.interiors[6], mockData.assets.interiors[7]].map((src, index) => (
+                  <div key={src} className={`overflow-hidden rounded-2xl border border-white/60 bg-white shadow-sm ${index === 0 ? 'row-span-2 min-h-[240px]' : 'min-h-[116px]'}`}>
+                    <img src={src} alt={`Penthouse showcase ${index + 1}`} className="h-full w-full object-cover" loading="lazy" decoding="async" />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
