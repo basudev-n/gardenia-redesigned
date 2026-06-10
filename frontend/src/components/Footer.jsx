@@ -48,7 +48,7 @@ const Footer = () => {
         <div className="grid gap-12 lg:grid-cols-[1.25fr_1fr_1fr_1fr]">
           <div>
             <img
-              src="https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/c0fi5vvp_Untitled%20%28400%20x%20100%20px%29.png"
+              src="/logo-footer.png"
               alt="The Gardenia"
               className="h-12 w-auto object-contain"
             />
