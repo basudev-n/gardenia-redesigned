@@ -6,7 +6,7 @@ import { mockData } from '../mock/data';
 import { openSiteVisitModal } from '@/lib/openSiteVisit';
 
 const PREFERENCES = ['2 BHK', '3 BHK', '3.5 BHK', '5 BHK Penthouse'];
-const BROCHURE_ENDPOINT = 'https://formspree.io/f/xlgkjnab';
+const TELECRM_ENDPOINT = '/api/telecrm-lead';
 
 const Hero = () => {
   const { hero } = mockData;
@@ -34,13 +34,13 @@ const Hero = () => {
 
     setLoading(true);
     try {
-      const res = await fetch(BROCHURE_ENDPOINT, {
+      const res = await fetch(TELECRM_ENDPOINT, {
         method: 'POST',
-        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          subject: 'New brochure download request from The Gardenia website',
           ...form,
           formType: 'brochure-download',
+          pageUrl: window.location.href,
         }),
       });
 

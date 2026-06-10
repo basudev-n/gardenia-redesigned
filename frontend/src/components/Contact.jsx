@@ -30,7 +30,7 @@ const initialFormData = {
   preferredTime: ''
 };
 
-const API_URL = process.env.REACT_APP_API_URL || '';
+const TELECRM_ENDPOINT = '/api/telecrm-lead';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -98,10 +98,15 @@ const Contact = () => {
 
     setIsSubmitting(true);
 
-    const payload = { ...formData, preferredContact };
+    const payload = {
+      ...formData,
+      preferredContact,
+      formType: 'contact',
+      pageUrl: window.location.href
+    };
 
     try {
-      const response = await fetch(`${API_URL}/api/contact-lead`, {
+      const response = await fetch(TELECRM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

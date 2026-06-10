@@ -5,7 +5,7 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
 
-const FORM_ENDPOINT = 'https://formspree.io/f/xeewakzp';
+const TELECRM_ENDPOINT = '/api/telecrm-lead';
 
 const initialForm = {
   name: '',
@@ -67,13 +67,13 @@ export default function SiteVisitModal() {
     setError('');
 
     try {
-      const response = await fetch(FORM_ENDPOINT, {
+      const response = await fetch(TELECRM_ENDPOINT, {
         method: 'POST',
-        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          subject: 'New site visit request from The Gardenia website',
           ...form,
           formType: 'site-visit',
+          pageUrl: window.location.href,
         }),
       });
 
