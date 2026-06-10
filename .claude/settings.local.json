@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs kill:*)",
+      "Bash(source /Users/basu-mac/Downloads/The-Gardenia-Main/.venv/bin/activate)"
+    ]
+  }
+}

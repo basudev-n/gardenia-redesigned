@@ -76,31 +76,37 @@ module.exports = async function handler(req, res) {
   const baseUrl = process.env.TELECRM_API_BASE_URL || DEFAULT_TELECRM_API_BASE_URL;
   const telecrmUrl = `${baseUrl.replace(/\/$/, '')}/enterprise/${enterpriseId}/autoupdatelead`;
 
-  try {
-    const telecrmResponse = await fetch(telecrmUrl, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${asyncToken}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(buildTelecrmPayload(body)),
-    });
+try {
+  const telecrmResponse = await fetch(telecrmUrl, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${asyncToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(buildTelecrmPayload(body)),
+  });
 
-    if (!telecrmResponse.ok) {
-      const errorText = await telecrmResponse.text();
-      return res.status(telecrmResponse.status).json({
-        error: 'TeleCRM submission failed.',
-        details: errorText,
-      });
-    }
+  const responseText = await telecrmResponse.text();
 
-    const responseText = await telecrmResponse.text();
-    const data = responseText ? JSON.parse(responseText) : { status: 'QUEUED' };
-    return res.status(200).json(data);
-  } catch (error) {
-    return res.status(502).json({
-      error: 'Unable to reach TeleCRM.',
-      details: error.message,
+  if (!telecrmResponse.ok) {
+    return res.status(telecrmResponse.status).json({
+      error: 'TeleCRM submission failed.',
+      details: responseText,
     });
   }
+
+  let data;
+  try {
+    data = responseText ? JSON.parse(responseText) : { status: 'QUEUED' };
+  } catch {
+    data = { status: 'QUEUED', raw: responseText };
+  }
+
+  return res.status(200).json(data);
+} catch (error) {
+  return res.status(502).json({
+    error: 'Unable to reach TeleCRM.',
+    details: error.message,
+  });
+}
 };
