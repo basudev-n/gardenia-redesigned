@@ -21,6 +21,7 @@ Blocked / Risks
 - MongoDB connection: ensure local or remote Mongo instance available at `MONGO_URL`.
 
 Build Log (add an entry per successful build)
+- 2026-06-10 — Fixed TeleCRM serverless function 404 — consolidated api handler, added vercel.json rewrites.
 - 2026-05-26 — Initial setup: created blueprint and started dev servers. (backend on 8001, frontend on 3000)
 
 - 2026-05-27 — Documented full site structure and route mapping (`SITE_STRUCTURE.md`) and added pages/routes to `TODO.md`.
