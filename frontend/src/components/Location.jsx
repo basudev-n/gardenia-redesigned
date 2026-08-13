@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from 'react';
-import { MapPin, GraduationCap, Hospital, Plane, School, Trees, Droplets, Landmark, Bus, Train, Clock, ChevronRight } from 'lucide-react';
+import { MapPin, GraduationCap, Cross, Plane, School, Trees, Droplets, Landmark, Bus, Train, Clock, ChevronRight } from 'lucide-react';
 import { mockData } from '../mock/data';
 
+const Hospital = Cross;
 const iconMap = { GraduationCap, Hospital, Plane, School, Trees, Droplets, Landmark, Bus, Train };
 
 const categories = [

@@ -19,7 +19,6 @@ import {
   CheckCircle
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
-import { useNavigate } from 'react-router-dom';
 
 const initialFormData = {
   name: '',
@@ -34,7 +33,6 @@ const TELECRM_ENDPOINT = '/api/telecrm-lead';
 
 const Contact = () => {
   const { toast } = useToast();
-  const navigate = useNavigate();
   const [formData, setFormData] = useState(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
@@ -116,7 +114,7 @@ const Contact = () => {
         throw new Error('Submission failed');
       }
 
-      navigate('/thank-you?type=contact');
+      window.location.assign('/thank-you?type=contact');
       setFormData(initialFormData);
       setPreferredContact('phone');
       setErrors({});

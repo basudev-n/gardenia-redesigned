@@ -1,5 +1,6 @@
+"use client";
+
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin, ArrowUpRight, ChevronRight } from 'lucide-react';
 
 const footerLinks = [
@@ -78,13 +79,13 @@ const Footer = () => {
               <ul className="mt-5 space-y-3">
                 {group.items.map((item) => (
                   <li key={item.label}>
-                    <Link
-                      to={item.to}
+                    <a
+                      href={item.to}
                       className="inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-emerald-400"
                     >
                       <ChevronRight className="h-3.5 w-3.5" />
                       {item.label}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -169,12 +170,12 @@ const Footer = () => {
             <button onClick={() => scrollToSection('hero')} className="text-gray-500 transition-colors hover:text-emerald-400">
               Back to top
             </button>
-            <Link to="/privacy-policy" className="text-gray-500 transition-colors hover:text-emerald-400">
+            <a href="/privacy-policy" className="text-gray-500 transition-colors hover:text-emerald-400">
               Privacy Policy
-            </Link>
-            <Link to="/terms-and-conditions" className="text-gray-500 transition-colors hover:text-emerald-400">
+            </a>
+            <a href="/terms-and-conditions" className="text-gray-500 transition-colors hover:text-emerald-400">
               Terms & Conditions
-            </Link>
+            </a>
           </div>
         </div>
       </div>

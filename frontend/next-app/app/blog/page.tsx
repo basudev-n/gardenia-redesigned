@@ -19,7 +19,6 @@ export default async function BlogPage() {
 
         <div className="mt-10">
           {/* Blog list client handles search, filters, pagination */}
-          {/* @ts-expect-error Server to client */}
           <BlogListClient initialPosts={posts} />
         </div>
       </div>

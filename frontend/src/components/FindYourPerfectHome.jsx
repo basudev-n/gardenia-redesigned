@@ -1,6 +1,5 @@
 "use client";
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { ArrowRight, Building2, Home, Building, Crown } from 'lucide-react';
 
 const properties = [
@@ -57,9 +56,9 @@ export default function FindYourPerfectHome() {
             const Icon = property.icon;
 
             return (
-              <Link
+              <a
                 key={property.label}
-                to={property.href}
+                href={property.href}
                 className={`group overflow-hidden rounded-2xl border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(16,185,129,0.12)] ${
                   property.featured
                     ? 'border-emerald-200 bg-[linear-gradient(180deg,rgba(6,95,70,0.04),rgba(255,255,255,1))] hover:border-emerald-300'
@@ -114,7 +113,7 @@ export default function FindYourPerfectHome() {
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </div>
                 </div>
-              </Link>
+              </a>
             );
           })}
         </div>

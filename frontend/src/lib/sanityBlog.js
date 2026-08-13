@@ -28,13 +28,17 @@ export const fetchSanityPosts = async () => {
     categories[]->{_id, title, "slug": slug.current}
   }`;
 
-  const response = await fetch(buildQueryUrl(projectId, dataset, query));
-  if (!response.ok) {
-    throw new Error("Failed to load blog posts");
-  }
+  try {
+    const response = await fetch(buildQueryUrl(projectId, dataset, query));
+    if (!response.ok) {
+      return [];
+    }
 
-  const json = await response.json();
-  return json.result || [];
+    const json = await response.json();
+    return json.result || [];
+  } catch (error) {
+    return [];
+  }
 };
 
 export const buildExcerpt = (post) => {

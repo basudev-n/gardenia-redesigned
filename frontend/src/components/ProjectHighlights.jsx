@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { Building2, HeartPulse, MapPinned, Sparkles, Trees, Home } from 'lucide-react';
+import { Building2, HeartPulse, MapPin, Sparkles, Trees, Home } from 'lucide-react';
 
 const highlights = [
   {
@@ -28,7 +28,7 @@ const highlights = [
     description: 'Exclusive elevated living for those who want privacy, scale, and refinement.',
   },
   {
-    icon: MapPinned,
+    icon: MapPin,
     value: 'Prime',
     label: 'Connectivity',
     description: 'Well-connected to key education, healthcare, work, and transport destinations.',

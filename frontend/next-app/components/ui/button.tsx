@@ -35,8 +35,9 @@ export function Button({ className = '', variant = 'default', size = 'default', 
     .join(' ');
 
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement<{ className?: string }>, {
-      className: [children.props.className, classes].filter(Boolean).join(' '),
+    const child = children as React.ReactElement<{ className?: string }>;
+    return React.cloneElement(child, {
+      className: [child.props.className, classes].filter(Boolean).join(' '),
     });
   }
 

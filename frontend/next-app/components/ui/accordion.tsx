@@ -15,7 +15,7 @@ export function AccordionItem({ className = '', defaultOpen = false, ...props }:
   return <details open={defaultOpen} className={["group rounded-2xl border border-emerald-100 bg-white p-5 shadow-sm", className].filter(Boolean).join(' ')} {...props} />;
 }
 
-export function AccordionTrigger({ className = '', children, ...props }: React.SummaryHTMLAttributes<HTMLSummaryElement>) {
+export function AccordionTrigger({ className = '', children, ...props }: React.HTMLAttributes<HTMLElement>) {
   return (
     <summary
       className={[
