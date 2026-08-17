@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Mail, MapPin, Phone, Youtube } from 'lucide-react';
+import { FaPinterestP, FaTumblr } from 'react-icons/fa';
 
 export default function SiteFooter() {
   return (
@@ -16,20 +17,20 @@ export default function SiteFooter() {
               Experience premium living at The Gardenia, where elegant architecture meets wellness-inspired planning in the heart of Bhubaneswar.
             </p>
             <div className="flex items-center gap-3">
-              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:bg-emerald-600 hover:-translate-y-1">
+              <a href="https://www.facebook.com/people/The-Gardenia/61589360762392/" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:bg-emerald-600 hover:-translate-y-1">
                 <Facebook className="h-4 w-4" />
               </a>
-              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:bg-emerald-600 hover:-translate-y-1">
+              <a href="https://www.instagram.com/the_gardenia_/" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:bg-emerald-600 hover:-translate-y-1">
                 <Instagram className="h-4 w-4" />
               </a>
-              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:bg-emerald-600 hover:-translate-y-1">
-                <Twitter className="h-4 w-4" />
-              </a>
-              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:bg-emerald-600 hover:-translate-y-1">
-                <Linkedin className="h-4 w-4" />
-              </a>
-              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:bg-emerald-600 hover:-translate-y-1">
+              <a href="https://www.youtube.com/@thegardeniahomes" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:bg-emerald-600 hover:-translate-y-1">
                 <Youtube className="h-4 w-4" />
+              </a>
+              <a href="https://in.pinterest.com/thegardeniahomes/" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:bg-emerald-600 hover:-translate-y-1">
+                <FaPinterestP className="h-4 w-4" />
+              </a>
+              <a href="https://www.tumblr.com/blog/thegardeniahomes" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:bg-emerald-600 hover:-translate-y-1">
+                <FaTumblr className="h-4 w-4" />
               </a>
             </div>
           </div>

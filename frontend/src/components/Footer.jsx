@@ -1,7 +1,8 @@
 "use client";
 
 import React from 'react';
-import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin, ArrowUpRight, ChevronRight } from 'lucide-react';
+import { Facebook, Instagram, Youtube, Mail, Phone, MapPin, ArrowUpRight, ChevronRight } from 'lucide-react';
+import { FaPinterestP, FaTumblr } from 'react-icons/fa';
 
 const footerLinks = [
   {
@@ -58,17 +59,20 @@ const Footer = () => {
             </p>
 
             <div className="mt-6 flex items-center gap-3">
-              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-800 bg-gray-900 text-gray-300 transition-colors hover:border-emerald-500 hover:bg-emerald-600 hover:text-white">
+              <a href="https://www.facebook.com/people/The-Gardenia/61589360762392/" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-800 bg-gray-900 text-gray-300 transition-colors hover:border-emerald-500 hover:bg-emerald-600 hover:text-white">
                 <Facebook className="h-4 w-4" />
               </a>
-              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-800 bg-gray-900 text-gray-300 transition-colors hover:border-emerald-500 hover:bg-emerald-600 hover:text-white">
+              <a href="https://www.instagram.com/the_gardenia_/" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-800 bg-gray-900 text-gray-300 transition-colors hover:border-emerald-500 hover:bg-emerald-600 hover:text-white">
                 <Instagram className="h-4 w-4" />
               </a>
-              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-800 bg-gray-900 text-gray-300 transition-colors hover:border-emerald-500 hover:bg-emerald-600 hover:text-white">
-                <Twitter className="h-4 w-4" />
-              </a>
-              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-800 bg-gray-900 text-gray-300 transition-colors hover:border-emerald-500 hover:bg-emerald-600 hover:text-white">
+              <a href="https://www.youtube.com/@thegardeniahomes" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-800 bg-gray-900 text-gray-300 transition-colors hover:border-emerald-500 hover:bg-emerald-600 hover:text-white">
                 <Youtube className="h-4 w-4" />
+              </a>
+              <a href="https://in.pinterest.com/thegardeniahomes/" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-800 bg-gray-900 text-gray-300 transition-colors hover:border-emerald-500 hover:bg-emerald-600 hover:text-white">
+                <FaPinterestP className="h-4 w-4" />
+              </a>
+              <a href="https://www.tumblr.com/blog/thegardeniahomes" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-800 bg-gray-900 text-gray-300 transition-colors hover:border-emerald-500 hover:bg-emerald-600 hover:text-white">
+                <FaTumblr className="h-4 w-4" />
               </a>
             </div>
           </div>

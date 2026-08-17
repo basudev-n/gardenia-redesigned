@@ -9,7 +9,7 @@ const properties = [
     href: '/2-bhk-flats-in-bhubaneswar',
     type: '2 BHK',
     area: '1314 Sq Ft.',
-    price: '79 Lacs*',
+    price: '82 Lacs*',
   },
   {
     icon: Building,

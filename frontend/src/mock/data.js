@@ -31,7 +31,7 @@ export const mockData = {
     title: "The Gardenia",
     subtitle: "Space, Tranquillity & Modern Elegance",
     description: "Experience a new era of wellness-driven living at The Gardenia, a premium residential community offering thoughtfully crafted 2, 3 & 4 BHK apartments and exclusive penthouses in Bhubaneswar.",
-    startingPrice: "₹79 Lacs*",
+    startingPrice: "₹82 Lacs*",
     location: "Bhubaneswar",
     heroImage: "https://customer-assets.emergentagent.com/job_gardenia-pool/artifacts/h087np0r_WhatsApp%20Image%202026-02-24%20at%2020.23.34%20%281%29.jpeg"
   },
@@ -279,7 +279,7 @@ export const mockData = {
       id: 1,
       type: "2 BHK",
       area: "1,100 sq.ft",
-      price: "₹79 Lacs*",
+      price: "₹82 Lacs*",
       bedrooms: 2,
       bathrooms: 2,
       features: ["Spacious Balcony", "Modular Kitchen", "Premium Fittings"]

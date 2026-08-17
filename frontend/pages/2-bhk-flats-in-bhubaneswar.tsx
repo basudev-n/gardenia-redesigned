@@ -61,7 +61,7 @@ const jsonLdProduct = {
   offers: {
     '@type': 'Offer',
     priceCurrency: 'INR',
-    price: '7900000',
+    price: '8200000',
     availability: 'https://schema.org/InStock',
     url: 'https://www.gardenia.homes/2-bhk-flats-in-bhubaneswar',
   },
@@ -76,7 +76,7 @@ export default function TwoBhkFlatsInBhubaneswarPage() {
         <title>Premium 2 BHK Flats in Bhubaneswar | The Gardenia</title>
         <meta
           name="description"
-          content="Discover thoughtfully designed 2 BHK apartments at The Gardenia in Bhubaneswar. Luxury living with wellness amenities, green spaces, and prime location. Starting ₹79 Lacs."
+          content="Discover thoughtfully designed 2 BHK apartments at The Gardenia in Bhubaneswar. Luxury living with wellness amenities, green spaces, and prime location. Starting ₹82 Lacs."
         />
         <link rel="canonical" href="https://www.gardenia.homes/2-bhk-flats-in-bhubaneswar" />
 
