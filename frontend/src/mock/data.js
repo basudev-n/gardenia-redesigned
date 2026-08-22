@@ -297,7 +297,7 @@ export const mockData = {
       id: 3,
       type: "3 BHK",
       area: "1,650 sq.ft",
-      price: "₹1.1 Cr*",
+      price: "₹1.13 Cr*",
       bedrooms: 3,
       bathrooms: 3,
       features: ["Master Bedroom Suite", "Pooja Room", "Premium Fittings"]
@@ -315,7 +315,7 @@ export const mockData = {
       id: 5,
       type: "4 BHK",
       area: "2,300 sq.ft",
-      price: "₹1.5 Cr*",
+      price: "₹1.33 Cr*",
       bedrooms: 4,
       bathrooms: 4,
       features: ["Private Deck", "Walk-in Closet", "Family Lounge"]

@@ -17,7 +17,7 @@ const properties = [
     href: '/3-bhk-flats-in-bhubaneswar',
     type: '3 BHK',
     area: '1813 Sq Ft.',
-    price: '1.08 Cr*',
+    price: '1.13 Cr*',
   },
   {
     icon: Home,
@@ -25,7 +25,7 @@ const properties = [
     href: '/4-bhk-flats-in-bhubaneswar',
     type: '4 BHK',
     area: '2126 Sq Ft.',
-    price: '1.28 Cr*',
+    price: '1.33 Cr*',
   },
   {
     icon: Crown,
