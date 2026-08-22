@@ -73,7 +73,7 @@ const Hero = () => {
 
   return (
     <>
-      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16 sm:pt-20 sm:pb-0">
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <img
@@ -90,36 +90,36 @@ const Hero = () => {
           <div className="max-w-3xl">
 
             {/* Location Badge */}
-            <div className="inline-flex items-center gap-2 bg-emerald-600/20 backdrop-blur-sm border border-emerald-500/30 rounded-full px-4 py-2 mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="inline-flex items-center gap-2 bg-emerald-600/20 backdrop-blur-sm border border-emerald-500/30 rounded-full px-4 py-2 mb-4 sm:mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
               <MapPin className="w-4 h-4 text-emerald-400" />
               <span className="text-emerald-400 font-medium text-sm">{hero.location}</span>
             </div>
 
             {/* Heading */}
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100 drop-shadow-2xl">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-3 sm:mb-4 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100 drop-shadow-2xl">
               {hero.title}
             </h1>
 
-            <p className="text-2xl md:text-3xl text-emerald-300 font-semibold mb-4 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+            <p className="text-xl sm:text-2xl md:text-3xl text-emerald-300 font-semibold mb-3 sm:mb-4 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
               {hero.subtitle}
             </p>
 
-            <p className="text-lg md:text-xl text-gray-200/90 mb-8 max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-10 duration-700 delay-300">
+            <p className="text-base sm:text-lg md:text-xl text-gray-200/90 mb-6 sm:mb-8 max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-10 duration-700 delay-300">
               {hero.description}
             </p>
 
             {/* Price Tag */}
-            <div className="inline-block bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-3 mb-8 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-400">
+            <div className="inline-block bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-3 mb-6 sm:mb-8 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-400">
               <p className="text-xs text-gray-300 mb-1">Starting from</p>
               <p className="text-3xl md:text-4xl font-bold text-white">{hero.startingPrice}</p>
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 items-start animate-in fade-in slide-in-from-bottom-14 duration-700 delay-500">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-start animate-in fade-in slide-in-from-bottom-14 duration-700 delay-500">
               <Button
                 onClick={openSiteVisitModal}
                 size="lg"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 text-lg font-semibold rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-600/30"
+                className="justify-center bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3.5 text-base sm:px-10 sm:py-4 sm:text-lg font-semibold rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-600/30"
                 aria-label="Book your site visit"
               >
                 <Calendar className="mr-2 w-5 h-5" />
@@ -131,7 +131,7 @@ const Hero = () => {
                 onClick={() => setShowModal(true)}
                 size="lg"
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-semibold rounded-2xl transition-all duration-300"
+                className="justify-center border-2 border-white text-white hover:bg-white hover:text-gray-900 px-6 py-3.5 text-base sm:px-8 sm:py-4 sm:text-lg font-semibold rounded-2xl transition-all duration-300"
                 aria-label="Get e-brochure"
               >
                 <Download className="mr-2 w-5 h-5" />
@@ -140,7 +140,7 @@ const Hero = () => {
             </div>
 
             {/* Trust Indicators */}
-            <div className="mt-10 flex flex-wrap gap-6 animate-in fade-in duration-700 delay-600">
+            <div className="mt-6 sm:mt-10 flex flex-wrap gap-4 sm:gap-6 animate-in fade-in duration-700 delay-600">
               {[
                 { value: '252', label: 'Limited Units' },
                 { value: '28+', label: 'Premium Amenities' },
@@ -158,7 +158,7 @@ const Hero = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+        <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
             <div className="w-1 h-3 bg-white/70 rounded-full animate-pulse" />
           </div>
