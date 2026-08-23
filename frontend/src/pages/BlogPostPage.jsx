@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { PortableText } from "@portabletext/react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { seedBlogPosts } from "@/lib/sanityBlog";
+import { buildExcerpt, fetchSanityPostBySlug, fetchSanityPosts, seedBlogPosts } from "@/lib/sanityBlog";
 import { openSiteVisitModal } from "@/lib/openSiteVisit";
 import {
   ArrowLeft,
@@ -25,17 +26,82 @@ const formatDate = (date) =>
 
 const getReadTime = (post) => post?.readTime || Math.max(3, Math.round((post?.content?.join(" ")?.split(/\s+/).length || 600) / 180));
 
+const portableTextComponents = {
+  block: {
+    h2: ({ children }) => <h2 className="text-2xl font-bold text-slate-950 md:text-3xl">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-xl font-bold text-slate-950">{children}</h3>,
+    normal: ({ children }) => <p className="text-lg leading-9 text-slate-700">{children}</p>,
+  },
+  marks: {
+    link: ({ value, children }) => (
+      <a
+        href={value?.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
+      >
+        {children}
+      </a>
+    ),
+  },
+  types: {
+    image: ({ value }) =>
+      value?.asset?.url ? (
+        <img
+          src={value.asset.url}
+          alt={value.alt || ""}
+          className="w-full rounded-2xl object-cover"
+        />
+      ) : null,
+  },
+};
+
 export default function BlogPostPage() {
   const { slug } = useParams();
-  const post = useMemo(() => seedBlogPosts.find((item) => item.slug.current === slug), [slug]);
-  const relatedPosts = useMemo(
-    () => seedBlogPosts.filter((item) => item.slug.current !== slug).slice(0, 3),
-    [slug]
-  );
+  const [post, setPost] = useState(undefined);
+  const [relatedPosts, setRelatedPosts] = useState([]);
+
+  useEffect(() => {
+    let active = true;
+    setPost(undefined);
+
+    const load = async () => {
+      const sanityPost = await fetchSanityPostBySlug(slug);
+      const seedPost = seedBlogPosts.find((item) => item.slug.current === slug);
+      const resolvedPost = sanityPost || seedPost || null;
+      if (!active) return;
+      setPost(resolvedPost);
+
+      const allPosts = await fetchSanityPosts();
+      const pool = allPosts.length ? allPosts : seedBlogPosts;
+      if (active) {
+        setRelatedPosts(pool.filter((item) => item.slug.current !== slug).slice(0, 3));
+      }
+    };
+
+    load();
+    return () => {
+      active = false;
+    };
+  }, [slug]);
 
   useEffect(() => {
     document.title = post ? `${post.title} | The Gardenia` : "Blog Post | The Gardenia";
   }, [post]);
+
+  if (post === undefined) {
+    return (
+      <div className="bg-white text-gray-900">
+        <Header />
+        <main className="pt-28">
+          <div className="container mx-auto px-4 py-16">
+            <div className="h-[420px] animate-pulse rounded-[1.75rem] bg-slate-100" />
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!post) {
     return (
@@ -54,6 +120,8 @@ export default function BlogPostPage() {
       </div>
     );
   }
+
+  const excerptText = post.excerpt || buildExcerpt(post);
 
   return (
     <div className="bg-white text-slate-900">
@@ -82,7 +150,7 @@ export default function BlogPostPage() {
                   </h1>
 
                   <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">
-                    {post.excerpt}
+                    {excerptText}
                   </p>
 
                   <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-slate-300">
@@ -122,15 +190,19 @@ export default function BlogPostPage() {
             <div className="container mx-auto grid gap-10 px-4 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
               <div className="max-w-3xl">
                 <div className="mb-8 border-l-4 border-emerald-500 bg-emerald-50 px-5 py-5">
-                  <p className="text-lg font-medium leading-8 text-emerald-950">{post.excerpt}</p>
+                  <p className="text-lg font-medium leading-8 text-emerald-950">{excerptText}</p>
                 </div>
 
                 <div className="space-y-7">
-                  {post.content?.map((paragraph, index) => (
-                    <p key={paragraph} className={`${index === 0 ? "text-xl leading-9 text-slate-800" : "text-lg leading-9 text-slate-700"}`}>
-                      {paragraph}
-                    </p>
-                  ))}
+                  {post.body?.length ? (
+                    <PortableText value={post.body} components={portableTextComponents} />
+                  ) : (
+                    post.content?.map((paragraph, index) => (
+                      <p key={paragraph} className={`${index === 0 ? "text-xl leading-9 text-slate-800" : "text-lg leading-9 text-slate-700"}`}>
+                        {paragraph}
+                      </p>
+                    ))
+                  )}
                 </div>
 
                 <div className="mt-10 grid gap-4 border-y border-slate-200 py-6 sm:grid-cols-3">

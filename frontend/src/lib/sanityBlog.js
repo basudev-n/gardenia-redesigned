@@ -12,21 +12,43 @@ export const getSanityConfig = () => {
 const buildQueryUrl = (projectId, dataset, query) =>
   `https://${projectId}.api.sanity.io/v${API_VERSION}/data/query/${dataset}?query=${encodeURIComponent(query)}`;
 
+const POST_LIST_PROJECTION = `{
+  _id,
+  title,
+  excerpt,
+  publishedAt,
+  slug,
+  "readTime": round(length(pt::text(body)) / 5 / 180 ),
+  "bodyText": pt::text(body),
+  featuredImage{alt, asset->{_id, url}},
+  author->{name, "slug": slug.current, image, bio, role},
+  categories[]->{_id, title, "slug": slug.current}
+}`;
+
+const POST_DETAIL_PROJECTION = `{
+  _id,
+  title,
+  excerpt,
+  publishedAt,
+  slug,
+  "readTime": round(length(pt::text(body)) / 5 / 180 ),
+  featuredImage{alt, asset->{_id, url}},
+  author->{name, "slug": slug.current, image, bio, role},
+  categories[]->{_id, title, "slug": slug.current},
+  body[]{
+    ...,
+    _type == "image" => {
+      ...,
+      asset->{_id, url}
+    }
+  }
+}`;
+
 export const fetchSanityPosts = async () => {
   const { projectId, dataset } = getSanityConfig();
   if (!projectId) return [];
 
-  const query = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
-    _id,
-    title,
-    excerpt,
-    publishedAt,
-    slug,
-    "readTime": round(length(pt::text(body)) / 5 / 180 ),
-    featuredImage->{asset->{_id,url}},
-    author->{name, "slug": slug.current, image, bio, role},
-    categories[]->{_id, title, "slug": slug.current}
-  }`;
+  const query = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) ${POST_LIST_PROJECTION}`;
 
   try {
     const response = await fetch(buildQueryUrl(projectId, dataset, query));
@@ -41,13 +63,35 @@ export const fetchSanityPosts = async () => {
   }
 };
 
+export const fetchSanityPostBySlug = async (slug) => {
+  const { projectId, dataset } = getSanityConfig();
+  if (!projectId || !slug) return null;
+
+  const query = `*[_type == "post" && slug.current == $slug][0] ${POST_DETAIL_PROJECTION}`;
+  const url = `${buildQueryUrl(projectId, dataset, query)}&$slug=${encodeURIComponent(JSON.stringify(slug))}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      return null;
+    }
+
+    const json = await response.json();
+    return json.result || null;
+  } catch (error) {
+    return null;
+  }
+};
+
 export const buildExcerpt = (post) => {
   if (post?.excerpt) return post.excerpt;
-  const bodyText = post?.body
-    ?.flatMap((block) => block?.children || [])
-    ?.map((child) => child?.text || "")
-    ?.join(" ")
-    ?.trim();
+  const bodyText =
+    post?.bodyText ||
+    post?.body
+      ?.flatMap((block) => block?.children || [])
+      ?.map((child) => child?.text || "")
+      ?.join(" ")
+      ?.trim();
 
   return bodyText ? `${bodyText.slice(0, 140)}${bodyText.length > 140 ? "..." : ""}` : "";
 };
