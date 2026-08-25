@@ -19,7 +19,7 @@ import FloatingCTA from "@/components/FloatingCTA";
 import SiteVisitModal from "@/components/SiteVisitModal";
 import AdminDashboard from "@/components/AdminDashboard";
 import { ArrowRight, Camera } from "lucide-react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 const AboutUsPage = React.lazy(() => import("@/pages/AboutUsPage"));
 const AmenitiesPage = React.lazy(() => import("@/pages/AmenitiesPage"));
@@ -156,6 +156,24 @@ function HomeLayout() {
   );
 }
 
+function MetaPixelPageView() {
+  const location = useLocation();
+  const isFirstLoad = React.useRef(true);
+
+  React.useEffect(() => {
+    if (isFirstLoad.current) {
+      // Base Meta Pixel snippet in index.html already fires the initial PageView.
+      isFirstLoad.current = false;
+      return;
+    }
+    if (typeof window.fbq === "function") {
+      window.fbq("track", "PageView");
+    }
+  }, [location.pathname]);
+
+  return null;
+}
+
 function App() {
   // Keep admin route behaviour
   const isAdmin = window.location.pathname === "/admin";
@@ -163,6 +181,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <MetaPixelPageView />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<HomeLayout />} />
