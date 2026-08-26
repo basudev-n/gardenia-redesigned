@@ -23,6 +23,15 @@ const Header = () => {
     setPropertiesOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    if (!isMenuOpen) return undefined;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isMenuOpen]);
+
   const navItems = useMemo(() => [
     { label: 'Home', to: '/', type: 'link' },
     { label: 'About', to: '/about-us', type: 'link' },
@@ -134,10 +143,14 @@ const Header = () => {
       </div>
 
       {isMenuOpen && (
-        <div className="xl:hidden border-t border-gray-100 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
+        <div
+          className={`xl:hidden animate-in fade-in slide-in-from-top-2 duration-200 overflow-y-auto overscroll-contain border-t border-gray-100 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.12)] ${
+            isScrolled ? 'max-h-[calc(100dvh-4rem)]' : 'max-h-[calc(100dvh-5rem)]'
+          }`}
+        >
           <div className="container mx-auto px-4 py-5">
             <div className="grid gap-3">
-              {navItems.map((item) => (
+              {navItems.filter((item) => item.type !== 'dropdown').map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}

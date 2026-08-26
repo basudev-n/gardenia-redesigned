@@ -119,12 +119,13 @@ const Hero = () => {
               <Button
                 onClick={openSiteVisitModal}
                 size="lg"
-                className="justify-center bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3.5 text-base sm:px-10 sm:py-4 sm:text-lg font-semibold rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-600/30"
+                className="justify-center whitespace-normal text-center leading-snug bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3.5 text-sm sm:whitespace-nowrap sm:px-10 sm:py-4 sm:text-lg font-semibold rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-600/30"
                 aria-label="Book your site visit"
               >
-                <Calendar className="mr-2 w-5 h-5" />
-                Book Your Site Visit — Free!
-                <ArrowRight className="ml-2 w-5 h-5 transition-transform duration-300" />
+                <Calendar className="w-5 h-5 shrink-0" />
+                <span className="sm:hidden">Book a Free Site Visit</span>
+                <span className="hidden sm:inline">Book Your Site Visit — Free!</span>
+                <ArrowRight className="w-5 h-5 shrink-0 transition-transform duration-300" />
               </Button>
 
               <Button

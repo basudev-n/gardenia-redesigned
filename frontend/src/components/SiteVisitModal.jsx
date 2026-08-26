@@ -94,21 +94,21 @@ export default function SiteVisitModal() {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/70 px-4 py-6 backdrop-blur-sm" onClick={close}>
-      <div className="w-full max-w-2xl overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_80px_rgba(15,23,42,0.28)]" onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-start justify-between border-b border-emerald-100 bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-5 text-white">
+      <div className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_80px_rgba(15,23,42,0.28)]" onClick={(e) => e.stopPropagation()}>
+        <div className="flex shrink-0 items-start justify-between border-b border-emerald-100 bg-gradient-to-r from-emerald-600 to-emerald-700 px-5 py-4 text-white sm:px-6 sm:py-5">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-100">Book a Site Visit</p>
-            <h3 className="mt-2 text-2xl font-bold tracking-tight">Schedule your visit with The Gardenia</h3>
+            <h3 className="mt-2 text-xl font-bold tracking-tight sm:text-2xl">Schedule your visit with The Gardenia</h3>
             <p className="mt-2 max-w-xl text-sm leading-6 text-emerald-50/90">
               Send your details and we’ll follow up with the right residence guidance and a visit slot.
             </p>
           </div>
-          <button onClick={close} className="rounded-full p-2 text-white/90 transition-colors hover:bg-white/15" aria-label="Close">
+          <button onClick={close} className="shrink-0 rounded-full p-2 text-white/90 transition-colors hover:bg-white/15" aria-label="Close">
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid min-h-0 flex-1 gap-0 overflow-y-auto lg:grid-cols-[1.05fr_0.95fr]">
           <div className="p-6 md:p-8">
             {!submitted && (
               <form onSubmit={handleSubmit} className="space-y-4">

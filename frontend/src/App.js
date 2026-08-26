@@ -76,7 +76,6 @@ function HomeLayout() {
     <div className="App">
       <Header />
       <Hero />
-      <SiteVisitModal />
 
       <AboutSection />
 
@@ -182,6 +181,7 @@ function App() {
   return (
     <BrowserRouter>
       <MetaPixelPageView />
+      <SiteVisitModal />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<HomeLayout />} />
