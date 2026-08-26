@@ -24,7 +24,10 @@ export default async function PostPage({ params }: { params: { slug: string } })
   const post = await sanityClient.fetch(getPostBySlug, { slug: params.slug });
   if (!post) return <div className="px-4 py-8">Post not found</div>;
 
-  const related = await sanityClient.fetch(getRelatedPosts, { category: post.categories && post.categories[0]?.slug?.current, excludeId: post._id });
+  const categorySlug = post.categories?.[0]?.slug;
+  const related = categorySlug
+    ? await sanityClient.fetch(getRelatedPosts, { category: categorySlug, excludeId: post._id })
+    : [];
 
   return (
     <div>
